@@ -45,20 +45,19 @@ t.print_results()
 t.reset()
 
 # Test that history works as expected
-t.add_test("history", "0 history")
+t.add_test("history", "")
 t.add_test("history -c", "")
 t.add_test("abc abc", GENERAL_ERROR)
 t.add_test("def", GENERAL_ERROR)
 expected_output = [
     "0 abc abc",
     "1 def",
-    "2 history"
 ]
 t.add_test("history", "\n".join(expected_output))
 t.add_test("history -c", "")
-t.add_test("history", "0 history")
+t.add_test("history", "")
 t.add_test("/bin/echo hello", "hello")
-t.add_test("history 1", "hello")
+t.add_test("history 0", "hello")
 t.run()
 t.print_results()
 t.reset()
@@ -66,12 +65,6 @@ t.reset()
 ############################# Pipes #############################
 t.add_test("/bin/echo hello world | /bin/grep hello", "hello world")
 t.add_test("/bin/echo blah          |/usr/bin/cut -b 3,4", "ah")
-t.run()
-t.print_results()
-t.reset()
-
-t.add_test("blah", GENERAL_ERROR)
-t.add_test("history | /bin/grep blah", "0 blah\n1 history | /bin/grep blah")
 t.run()
 t.print_results()
 t.reset()
