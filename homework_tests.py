@@ -51,7 +51,7 @@ t.add_test("history -c", "")
 t.add_test("    abc   abc   ", GENERAL_ERROR)
 t.add_test("def", GENERAL_ERROR)
 expected_output = [
-    "0     abc   abc   ",
+    "0     abc   abc   |0 abc   abc   ",
     "1 def",
 ]
 t.add_test("history", "\n".join(expected_output))
