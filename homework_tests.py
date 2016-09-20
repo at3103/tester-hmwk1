@@ -79,3 +79,22 @@ t.add_test("history", "0 history | /bin/grep hello")
 t.run()
 t.print_results()
 t.reset()
+
+############
+t.add_test("/bin/echo hello world | /bin/grep hello", "hello world")
+t.add_test("/bin/echo blah          |/usr/bin/cut -b 3,4", "ah")
+t.add_test("/bin/echo blah|/usr/bin/cut -b 3,4", "ah")
+t.run()
+t.print_results()
+t.reset()
+
+t.add_test("hsitory", GENERAL_ERROR)
+t.add_test("/bin/echo A|/bin/echo B|/bin/echo C|/bin/echo A|/bin/echo B|/bin/echo C|/bin/echo A|/bin/echo B|/bin/echo C|/bin/echo A|/bin/echo B|/bin/echo C|/bin/echo A|/bin/echo B|/bin/echo C|/bin/echo A|/bin/echo B|/bin/echo C|/bin/echo A|/bin/echo B|/bin/echo C|/bin/echo A|/bin/echo B|/bin/echo C|/bin/echo A|/bin/echo B|/bin/echo C|/bin/echo A|/bin/echo B|/bin/echo C|/bin/echo A|/bin/echo B|/bin/echo C|/bin/echo A|/bin/echo B|/bin/echo C|/bin/echo A|/bin/echo B|/bin/echo C|/bin/echo A|/bin/echo B|/bin/echo C", "C")
+t.add_test("history -c", "")
+t.add_test("history 23", GENERAL_ERROR)
+t.run()
+t.print_results()
+t.reset()
+
+
+
